@@ -1,3 +1,4 @@
+
 class Node:
     def __init__(self, value):
         self.value = value  # Store the data
@@ -10,10 +11,10 @@ class LinkedList:
     def insert(self, value):
         new_node = Node(value)  # Create a new node
         if not self.head:
-            self.head = new_node  # If list is empty, new node becomes the head
+            self.head = new_node  # If list is empty, new node becomes head
         else:
             current = self.head
-            while current.next:  # Traverse to the end of the list
+            while current.next:  # go to the end of the list
                 current = current.next
             current.next = new_node  # Add the new node at the end
 
@@ -37,7 +38,6 @@ class LinkedList:
         print("Value not found")
 
     def display(self):
-        print("Display function called")  # Debugging print
         if not self.head:
             print("List is empty")
             return
@@ -49,7 +49,6 @@ class LinkedList:
         print("None")
 
 
-from linked_list import LinkedList
 
 ll = LinkedList()
 
@@ -65,4 +64,3 @@ ll.display()  # Should print: 10 -> 30 -> None
 
 # Trying to delete value that is not in the list  
 ll.delete(40)  # Should print: Value not found
-print("hello")
