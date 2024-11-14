@@ -1,5 +1,7 @@
-# Depth-First Search (DFS) for a graph
+import time
+from utils import measure_time, write_performance_to_csv
 
+# Depth-First Search (DFS) for a graph
 class Graph:
     def __init__(self):
         self.graph = {}
@@ -19,20 +21,35 @@ class Graph:
             visited = set()
 
         visited.add(start)
-        print(start, end=" ")
 
         for neighbor in self.graph[start]:
             if neighbor not in visited:
                 self.dfs(neighbor, visited)
 
-# Test DFS
-if __name__ == "__main__":
+# Measure performance for DFS with varying graph sizes
+def measure_dfs_time(n, iterations=5):
     g = Graph()
-    g.add_edge(1, 2)
-    g.add_edge(1, 3)
-    g.add_edge(2, 4)
-    g.add_edge(2, 5)
-    g.add_edge(3, 6)
+    # Create a simple graph with n nodes in a chain-like structure
+    for i in range(1, n):
+        g.add_edge(i, i + 1)  # Connect each node to the next
+    
+    # Perform multiple DFS iterations and average the results
+    total_time = 0
+    for _ in range(iterations):
+        start_time = time.perf_counter()  # Use perf_counter for better precision
+        g.dfs(1)  # Perform DFS starting from node 1
+        end_time = time.perf_counter()
+        total_time += (end_time - start_time)
+    
+    return total_time / iterations  # Average the time over multiple iterations
 
-    print("DFS starting from node 1:")
-    g.dfs(1)
+if __name__ == "__main__":
+    # Test performance with varying graph sizes (number of nodes)
+    input_sizes = [100, 200, 300, 400, 500]
+    execution_times = []
+
+    for size in input_sizes:
+        execution_times.append(measure_dfs_time(size))  # Measure time for DFS with different graph sizes
+
+    # Write the performance data to CSV
+    write_performance_to_csv('DFS', input_sizes, execution_times)

@@ -1,3 +1,5 @@
+from utils import measure_time, write_performance_to_csv
+
 # Quick Sort
 def quick_sort(arr):
     if len(arr) <= 1:
@@ -14,3 +16,8 @@ if __name__ == "__main__":
     print("Original array:", arr)
     sorted_arr = quick_sort(arr)
     print("Sorted array:", sorted_arr)
+
+    # Measure and record performance
+    input_sizes = [1000, 2000, 3000, 4000, 5000]  # Input sizes to test
+    execution_times = measure_time(quick_sort, input_sizes)
+    write_performance_to_csv('Quick Sort', input_sizes, execution_times)

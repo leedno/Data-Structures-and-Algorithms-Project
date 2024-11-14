@@ -1,3 +1,6 @@
+from utils import measure_time, write_performance_to_csv
+
+
 # Heap Sort
 def heapify(arr, n, i):
     largest = i  # Initialize largest as root
@@ -33,3 +36,8 @@ if __name__ == "__main__":
     print("Original array:", arr)
     sorted_arr = heap_sort(arr)
     print("Sorted array:", sorted_arr)
+
+    # Measure and record performance
+    input_sizes = [1000, 2000, 3000, 4000, 5000]  # Input sizes to test
+    execution_times = measure_time(heap_sort, input_sizes)
+    write_performance_to_csv('Heap Sort', input_sizes, execution_times)

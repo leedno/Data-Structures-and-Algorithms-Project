@@ -1,5 +1,5 @@
-# Breadth-First search (BFS)
-
+import time
+from utils import measure_time, write_performance_to_csv
 from collections import deque
 
 class Graph:
@@ -28,12 +28,26 @@ class Graph:
                     visited.add(neighbor)
                     queue.append(neighbor)
 
-g = Graph()
-g.add_edge(1, 2)
-g.add_edge(1, 3)
-g.add_edge(2, 4)
-g.add_edge(2, 5)
-g.add_edge(3, 6)
+# Measure performance for BFS with varying graph sizes (nodes and edges)
+def measure_bfs_time(num_nodes):
+    g = Graph()
+    # Adding edges between consecutive nodes to simulate a simple graph
+    for i in range(1, num_nodes):
+        g.add_edge(i, i + 1)
 
-print("BFS starting from node 1:")
-g.bfs(1)
+    # Perform BFS and measure execution time
+    start_time = time.time()
+    g.bfs(1)  # Starting BFS from node 1
+    end_time = time.time()
+    return end_time - start_time
+
+if __name__ == "__main__":
+    # Test performance with varying input sizes (number of nodes)
+    input_sizes = [1000, 2000, 3000, 4000, 5000]
+    execution_times = []
+
+    for size in input_sizes:
+        execution_times.append(measure_bfs_time(size))  # Measure time for BFS with different graph sizes
+
+    # Write the performance data to CSV
+    write_performance_to_csv('BFS', input_sizes, execution_times)

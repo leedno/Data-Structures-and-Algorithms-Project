@@ -1,3 +1,5 @@
+from utils import measure_time, write_performance_to_csv
+
 # Bubble Sort 
 def bubble_sort(arr):
     n = len(arr)
@@ -12,3 +14,7 @@ if __name__ == "__main__":
     print("Original array:", arr)
     sorted_arr = bubble_sort(arr)
     print("Sorted array:", sorted_arr)
+
+    input_sizes = [1000, 2000, 3000, 4000, 5000]
+    execution_times = measure_time(bubble_sort, input_sizes)
+    write_performance_to_csv('Bubble Sort', input_sizes, execution_times)

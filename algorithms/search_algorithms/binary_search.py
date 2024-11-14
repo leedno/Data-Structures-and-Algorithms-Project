@@ -1,5 +1,7 @@
-# Binary search
+import time
+from utils import measure_time, write_performance_to_csv
 
+# Binary search algorithm
 def binary_search(arr, target):
     left, right = 0, len(arr) - 1
 
@@ -16,11 +18,21 @@ def binary_search(arr, target):
 
     return -1  # Target not found
 
-arr = [1, 2, 3, 5, 9]  # Must be sorted
-target = 3
-result = binary_search(arr, target)
+# Measure the time for binary search
+def measure_binary_search_time(n):
+    arr = list(range(1, n + 1))  # Create a sorted list of size n
+    target = n  # Arbitrary target; can be any number within the range
+    start_time = time.perf_counter()  # Use higher resolution timer
+    binary_search(arr, target)  # Perform binary search
+    end_time = time.perf_counter()
+    return end_time - start_time
 
-if result != -1:
-    print(f"Element found at index {result}")
-else:
-    print("Element not found")
+if __name__ == "__main__":
+    input_sizes = [1000, 2000, 3000, 4000, 5000]
+    execution_times = []
+
+    for size in input_sizes:
+        execution_times.append(measure_binary_search_time(size))  # Measure time for binary search with different array sizes
+
+    # Write the performance data to CSV
+    write_performance_to_csv('Binary Search', input_sizes, execution_times)
