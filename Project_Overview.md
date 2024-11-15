@@ -97,3 +97,5 @@ In post-order traversal, the left subtree is visited first, then the right subtr
 ## 5. Performance Analysis
 The performance of the implemented sorting and searching algorithms has been analyzed and compared using different input sizes. Time complexity, space complexity, and execution time have been considered to assess the algorithms' efficiency and scalability. The detailed performance metrics can be found in the **Performance Analysis Report**.
 
+## 6. Presentation
+I have created a presentation related to this project, which can be viewed using this link: https://tuas365-my.sharepoint.com/:p:/r/personal/leon_nordell_edu_turkuamk_fi/Documents/Data_Structures_And_Algorithms_Presentation_Final.pptx?d=w085c3c1eba484cc78e9a1ad769362f5b&csf=1&web=1&e=MzdQ4s
